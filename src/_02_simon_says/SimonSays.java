@@ -34,9 +34,9 @@ public class SimonSays extends KeyAdapter {
 		// 2. Add the four images that match keyboard keys like this:
 		// images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
           images.put(new Integer(KeyEvent.VK_UP), "up.jpg");
-          images.put(new Integer(KeyEvent.VK_UP), "down.jpg");
-          images.put(new Integer(KeyEvent.VK_UP), "left.jpg");
-          images.put(new Integer(KeyEvent.VK_UP), "right.jpg");
+          images.put(new Integer(KeyEvent.VK_DOWN), "down.jpg");
+          images.put(new Integer(KeyEvent.VK_LEFT), "left.jpg");
+          images.put(new Integer(KeyEvent.VK_RIGHT), "right.jpg");
 		// 3. Use a JOptionPane to tell the user the rules: "Press the matching
 		// key when
 		// 'Simon says' otherwise press a different key"
@@ -44,36 +44,52 @@ public class SimonSays extends KeyAdapter {
 		// 4. Call the showImage method to show an image
       showImage();
 	}
-
+	int points;        
+   
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
-        int points;        
-        int tries;
+        
 		// 16. If the keyCode matches the imageIndex and "Simon says"
          if (e.getKeyCode() == imageIndex && simonSays == true) {
         	 points++;
+             speak("correct");
          }
+         
+        
 		// 17. Increase the value of score
 
 		// 18. Use the speak method to tell the user they were correct
-         speak("correct");
+ 
 		// 19. If the keyCode doesn't match the imageIndex and "Simon didn't
 		// say..."
-         if (e.getKeyCode() != imageIndex && simonSays == false )
+         else  if (e.getKeyCode() != imageIndex && simonSays == false ) {
 		// 20. Increase the value of score
-
+        	 points++;
+        
 		// 21. Use the speak method to tell the user they were correct
-
+      speak("Correct");
 		// 22. Increment tries by 1
-              tries++;
+
+         }
+         else {
+        	 speak("false");
+        	 points = points -1;
+         }
+         tries++;
 		// 25. If tries is greater than 9 (or however many you want)...
         if (tries > 9) {
-        	JOptionPane.showMessageDialog(null, "Points: " + points);
+        	if (points < 9) {
+        		JOptionPane.showMessageDialog(null, "Points: " + points);
+        	}
+        	else {
+        		JOptionPane.showMessageDialog(null, "Points: " + points + " Perfect score!");
+        	}
+        	System.exit(0);
         }
 		// 26. Tell the user their score
 
 		// 27. Exit the program
-        System.exit(0);
+       // 
 		// 23. Dispose of the frame
          frame1.dispose();
 		// 24. Call the showImage method to show a new image
@@ -105,13 +121,13 @@ public class SimonSays extends KeyAdapter {
         if (rand1 == 0) {
         	
         	simonSays = false;
-        	speak("Simon says press this key");
+        	speak("Press this key");
         }
         
         else {
         	
         	simonSays = true;
-        	speak("Press this key");
+        	speak("Simon says press this key");
         }
 		// 14. Above, set the value of simonSays to true/false appropriately
 
