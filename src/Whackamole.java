@@ -38,7 +38,7 @@ Whackamole a = new Whackamole();
 	JButton button  = new JButton();
 	button.addActionListener(this);
 	panel.add(button);
-	button.setText("");
+	button.setText(" ");
 	}
 	}
 }
