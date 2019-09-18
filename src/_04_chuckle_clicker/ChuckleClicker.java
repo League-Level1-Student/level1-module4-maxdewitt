@@ -20,7 +20,9 @@ static void makeButtons() {
 	panel.add(button);
 	panel.add(button1);
 	button.setText("Joke");
-	button.setPreferredSize(new Dimension(500,500));
+	button1.setText("Punchline");
+	button.setPreferredSize(new Dimension(200,100));
+	button1.setPreferredSize(new Dimension(200,100));
     frame.setVisible(true);
 }
 }
